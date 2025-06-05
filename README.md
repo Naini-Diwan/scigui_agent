@@ -1,6 +1,6 @@
 # SciGUI-Agent
 
-A copyright-free, open-source agent for automating scientific GUI software using vision-language grounding and hierarchical planning.
+An innovative agent for automating scientific GUI software using vision-language grounding and hierarchical planning.
 
 ## Features
 
