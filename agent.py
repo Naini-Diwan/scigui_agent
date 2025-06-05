@@ -1,30 +1,29 @@
-
 from perception import VLMPerception
 from planning import HierarchicalPlanner
 from gui_control import GUIController
 
 class SciGUIAgent:
-    def __init__(self):
+    def __init__(self, mode="desktop"):
         self.perception = VLMPerception()
         self.planner = HierarchicalPlanner()
-        self.gui = GUIController()
+        self.gui = GUIController(mode=mode)
 
-    def run_task(self, screenshot_path, instruction, high_level_task):
-        print(f"Instruction: {instruction}")
-        elements = self.perception.detect_elements(screenshot_path, instruction)
-        subtasks = self.planner.decompose(high_level_task)
-        print(f"Subtasks: {subtasks}")
-        for subtask in subtasks:
-            for elem in elements:
-                if subtask in elem['label'].lower():
-                    print(f"Executing: {subtask}")
-                    self.gui.click(elem['bbox'])
-        print("Task complete.")
+    def run_task(self, screenshot_path, high_level_task):
+        elements = self.perception.detect_elements(screenshot_path)
+        workflow = self.planner.decompose(high_level_task)
+        for step in workflow:
+            if step["step"] == "detect_gui_elements":
+                print(f"Detected elements: {elements}")
+            elif step["step"] == "find_target_element":
+                # Example: find element with label matching task
+                target = next((e for e in elements if high_level_task in e['label'].lower()), None)
+                if target:
+                    print(f"Target element: {target}")
+            elif step["step"] == "execute_action":
+                if target:
+                    self.gui.click(target['bbox'])
+        print("Workflow complete.")
 
 if __name__ == "__main__":
     agent = SciGUIAgent()
-    agent.run_task(
-        screenshot_path="dataset/screenshots/celestia_001.png",
-        instruction="Load the star catalog and set the view to 2025.",
-        high_level_task="load dataset"
-    )
+    agent.run_task("dataset/screenshots/celestia_001.png", "open file")
