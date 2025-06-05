@@ -1,18 +1,8 @@
-# Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
-*.so
-
-# Virtual environments
+*.pyc
 env/
 venv/
 .venv/
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
-
-# Data and logs
-*.log
-*.csv
-*.db
+mlruns/
 dataset/screenshots/
+.dvc/
