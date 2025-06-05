@@ -1,6 +1,6 @@
 # SciGUI-Agent
 
-A modular, permission-controlled agent for automating scientific GUI workflows with vision-language models, hierarchical planning, and full reproducibility.
+An inovative agent for automating scientific GUI workflows with vision-language models and hierarchical planning.
 
 ## Features
 
