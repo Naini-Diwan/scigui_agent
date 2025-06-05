@@ -1,10 +1,10 @@
 # SciGUI-Agent
 
-An innovative agent for automating scientific GUI software using vision-language grounding and hierarchical planning.
+A modular, permission-controlled agent for automating scientific GUI workflows with vision-language models, hierarchical planning, and full reproducibility.
 
 ## Features
 
-- Vision-language GUI element detection (modular, can use ShowUI or similar)
-- Hierarchical planner for decomposing scientific tasks
-- Pixel-level GUI automation (PyAutoGUI)
-- Easily extensible for new scientific tools
+- **YOLOv8 + PyTorch + OpenCV** for GUI element detection
+- **AutoGen** for multi-agent planning, **Langflow** for workflow orchestration
+- **PyAutoGUI, Appium, Selenium** for cross-platform GUI automation
+- **MLflow** for experiment tracking, **DVC** for data versioning, **Docker** for isolation
