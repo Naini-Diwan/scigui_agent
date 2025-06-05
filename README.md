@@ -8,6 +8,3 @@ A copyright-free, open-source agent for automating scientific GUI software using
 - Hierarchical planner for decomposing scientific tasks
 - Pixel-level GUI automation (PyAutoGUI)
 - Easily extensible for new scientific tools
-
-## Installation
-
