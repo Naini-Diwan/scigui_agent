@@ -1,13 +1,17 @@
 import cv2
+import torch
+from ultralytics import YOLO
 
 class VLMPerception:
-    def __init__(self):
-        pass  # Placeholder for model loading
+    def __init__(self, model_path="yolov8n.pt"):
+        self.model = YOLO(model_path)  # Use a custom-trained model for GUI elements
 
-    def detect_elements(self, image_path, instruction):
-        # Placeholder: In practice, use a vision-language model like ShowUI
-        # Here, we simulate detected elements for demonstration
-        return [
-            {"bbox": [120, 80, 220, 130], "label": "Open File Button"},
-            {"bbox": [300, 400, 500, 420], "label": "Timeline Slider"}
-        ]
+    def detect_elements(self, image_path):
+        image = cv2.imread(image_path)
+        results = self.model(image)
+        elements = []
+        for box in results[0].boxes:
+            bbox = box.xyxy[0].cpu().numpy().astype(int).tolist()
+            label = self.model.names[int(box.cls[0])]
+            elements.append({"bbox": bbox, "label": label})
+        return elements
